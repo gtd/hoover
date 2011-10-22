@@ -1,7 +1,7 @@
 Hoover
 ======
 
-Hoover is the name of [Loggly](http://loggly.com)'s lovable and profane mascot.  It is also the name of this Ruby library.
+Hoover is the name of [Loggly](http://loggly.com)'s lovable and profane [mascot](http://www.facebook.com/hooverloggly).  It is also the name of this Ruby library.
 
 The purpose of this gem is to take advantage of Loggly's awesome JSON logging (see the [blog post](http://loggly.com/blog/2011/06/on-the-way-to-impressive/)).  Why so awesome?  Because instead of just logging strings, now you can push JSON data, and that data is then exposed to advanced search operations in Loggly's console.  If you've ever spent any time grepping over gigabytes of logfiles to debug some issue or another the benefit of this should be immediately obvious.
 
