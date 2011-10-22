@@ -33,6 +33,10 @@ describe Hoover do
     it "is initialized" do
       Hoover.initialized?.must_equal true
     end
+
+    it "isnt ready to post" do
+      Hoover.ready_to_post?.must_equal false
+    end
   end
 
   describe "initialized with logglier" do
@@ -54,6 +58,10 @@ describe Hoover do
     it "allows flush" do
       Hoover::Job.any_instance.expects(:post)
       Hoover.flush
+    end
+
+    it "is ready to post" do
+      Hoover.ready_to_post?.must_equal true
     end
   end
 end

@@ -30,7 +30,9 @@ module Hoover
     end
 
     def after_dispatch(env)
-      Hoover.flush
+      # FIXME: Hoover is often not ready to post, if the before_filter that sets the logglier instance
+      #        hasn't run.  Examples are routing redirects.  This will be fixed by proper logglier configuration
+      Hoover.flush if Hoover.ready_to_post?
     end
   end
 end

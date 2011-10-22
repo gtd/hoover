@@ -1,7 +1,7 @@
 module Hoover
   module ActionControllerMethods
     def set_hoover_logglier(logglier)
-      before_filter do
+      prepend_before_filter do
         if Hoover.initialized?
           Hoover.logglier = logglier
         else

@@ -12,6 +12,10 @@ module Hoover
       ! active_job.nil?
     end
 
+    def ready_to_post?
+      initialized? && active_job.ready_to_post?
+    end
+
     def reset!
       self.active_job = nil
     end
