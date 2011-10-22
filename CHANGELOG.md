@@ -1,3 +1,7 @@
+## Version 0.0.2 - Oct 22, 2011
+
+* Fix for Rails functional testing
+
 ## Version 0.0.1 - Oct 22, 2011
 
 * Initial release
