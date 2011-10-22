@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hoover}
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Gabe da Silveira}]
@@ -14,18 +14,31 @@ Gem::Specification.new do |s|
   s.email = %q{gabe@websaviour.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
+    ".travis.yml",
+    "CHANGELOG.md",
     "Gemfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
+    "hoover.gemspec",
     "lib/hoover.rb",
-    "test/helper.rb",
-    "test/test_hoover.rb"
+    "lib/hoover/action_controller_methods.rb",
+    "lib/hoover/job.rb",
+    "lib/hoover/log_subscribers/action_controller_log_subscriber.rb",
+    "lib/hoover/log_subscribers/action_mailer_log_subscriber.rb",
+    "lib/hoover/log_subscribers/action_view_log_subscriber.rb",
+    "lib/hoover/log_subscribers/active_record_log_subscriber.rb",
+    "lib/hoover/log_subscribers/active_resource_log_subscriber.rb",
+    "lib/hoover/rack_logger.rb",
+    "lib/hoover/railtie.rb",
+    "spec/helper.rb",
+    "spec/hoover_spec.rb",
+    "spec/job_spec.rb"
   ]
   s.homepage = %q{http://github.com/dasil003/hoover}
   s.licenses = [%q{MIT}]
@@ -37,18 +50,36 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<hoover>, [">= 0"])
       s.add_development_dependency(%q<minitest>, [">= 0"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
+      s.add_development_dependency(%q<minitest>, [">= 0"])
+      s.add_development_dependency(%q<bundler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
+      s.add_development_dependency(%q<mocha>, [">= 0"])
+      s.add_runtime_dependency(%q<logglier>, ["~> 0.2.6"])
     else
+      s.add_dependency(%q<hoover>, [">= 0"])
       s.add_dependency(%q<minitest>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
+      s.add_dependency(%q<minitest>, [">= 0"])
+      s.add_dependency(%q<bundler>, [">= 0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
+      s.add_dependency(%q<mocha>, [">= 0"])
+      s.add_dependency(%q<logglier>, ["~> 0.2.6"])
     end
   else
+    s.add_dependency(%q<hoover>, [">= 0"])
     s.add_dependency(%q<minitest>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
+    s.add_dependency(%q<minitest>, [">= 0"])
+    s.add_dependency(%q<bundler>, [">= 0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
+    s.add_dependency(%q<mocha>, [">= 0"])
+    s.add_dependency(%q<logglier>, ["~> 0.2.6"])
   end
 end
 

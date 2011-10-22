@@ -19,6 +19,8 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Sets up a hash at the beginning of each request and flushes it to Loggly at the end of the request.  Also comes with standard Rails 3 log subscribers.}
   gem.email = "gabe@websaviour.com"
   gem.authors = ["Gabe da Silveira"]
+
+  gem.add_dependency "logglier", "~> 0.2.6"
 end
 Jeweler::RubygemsDotOrgTasks.new
 
