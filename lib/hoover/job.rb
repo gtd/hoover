@@ -1,6 +1,7 @@
 module Hoover
   class Job
     attr_writer :logglier
+    attr_reader :hash
 
     def initialize(logglier = nil)
       @logglier = logglier
@@ -10,13 +11,9 @@ module Hoover
     def add(hash)
       hash.each do |k,v|
         if @hash.key?(k)
-          if @hash[k].is_a?(Array)
-            @hash[k] << v
-          else
-            @hash[k] = [@hash[k], v]
-          end
+          @hash[k] << v
         else
-          @hash[k] = v
+          @hash[k] = [v]
         end
       end
     end
@@ -26,6 +23,8 @@ module Hoover
     end
 
     def post
+      raise "cannot post until logglier is set" unless ready_to_post?
+      @hash.each{ |k,v| @hash[k] = @hash[k].first if v.size == 1 }
       @logglier.info(@hash)
     end
   end

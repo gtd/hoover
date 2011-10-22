@@ -8,11 +8,17 @@ module Hoover
       self.active_job = Job.new(logglier)
     end
 
+    def reset!
+      self.active_job = nil
+    end
+
     def add(*args)
+      raise "Must init Hoover before calling add" unless active_job
       active_job.add(*args)
     end
 
     def logglier=(logglier)
+      raise "Must init Hoover before setting logglier" unless active_job
       active_job.logglier = logglier
     end
 
@@ -20,7 +26,7 @@ module Hoover
       raise "Hoover.logglier must be set before calling flush" unless active_job.ready_to_post?
 
       active_job.post
-      self.active_job = nil
+      reset!
     end
 
     private
