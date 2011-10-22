@@ -1,3 +1,7 @@
+## Version 0.0.4 - Oct 22, 2011
+
+* Fix some crashes in the middleware
+
 ## Version 0.0.3 - Oct 22, 2011
 
 * Remove Jeweler dependency
