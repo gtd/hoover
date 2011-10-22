@@ -8,6 +8,10 @@ module Hoover
       self.active_job = Job.new(logglier)
     end
 
+    def initialized?
+      ! active_job.nil?
+    end
+
     def reset!
       self.active_job = nil
     end

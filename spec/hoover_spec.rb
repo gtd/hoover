@@ -4,11 +4,11 @@ describe Hoover do
   after { Hoover.reset! }
 
   describe "unitialized" do
-    it "should not allow add" do
+    it "doesnt allow add" do
       proc{ Hoover.add(:key => 'val') }.must_raise RuntimeError, "Must init Hoover before calling add"
     end
 
-    it "should not allow setting logglier" do
+    it "allows setting logglier" do
       proc{ Hoover.logglier = nil }.must_raise RuntimeError, "Must init Hoover before setting logglier"
     end
   end
@@ -16,18 +16,22 @@ describe Hoover do
   describe "initialized wo logglier" do
     before { Hoover.init }
 
-    it "should allow add" do
+    it "allows add" do
       Hoover::Job.any_instance.expects(:add).with({})
       Hoover.add({})
     end
 
-    it "should allow setting logglier" do
+    it "allows setting logglier" do
       logglier = Object.new
       (Hoover.logglier = logglier).must_equal logglier
     end
 
-    it "should not allow flushing" do
+    it "doesnt allow flushing" do
       proc{ Hoover.flush }.must_raise RuntimeError, "Hoover.logglier must be set before calling flush"
+    end
+
+    it "is initialized" do
+      Hoover.initialized?.must_equal true
     end
   end
 
@@ -37,17 +41,17 @@ describe Hoover do
       Hoover.init(@logglier) 
     end
 
-    it "should allow add" do
+    it "allows add" do
       Hoover::Job.any_instance.expects(:add).with({})
       Hoover.add({})
     end
 
-    it "should allow setting logglier" do
+    it "allows setting logglier" do
       logglier = Object.new
       (Hoover.logglier = logglier).must_equal logglier
     end
 
-    it "should allow flush" do
+    it "allows flush" do
       Hoover::Job.any_instance.expects(:post)
       Hoover.flush
     end
