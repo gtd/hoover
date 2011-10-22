@@ -31,8 +31,8 @@ in this case is provide the configured logglier object.  Currently this is done 
       set_hoover_logglier $loggly
     end
 
-Where `$loggly` is an instance of the `Logglier` class.  Soon I hope to have configuration options so you can set this
-in your application.rb.
+Where `$loggly` is an instance of the `Logglier` class that was set up previously.  Soon I hope to have configuration
+options so you can set this in your application.rb.
 
 
 ## General Setup
@@ -45,9 +45,16 @@ logging for any framework other than Rails 3.
 
 Anywhere in your request you can now call:
 
-    Hoover.add(:key, 'data that converts nicely to json')
+    Hoover.add(:key => 'data that converts nicely to json')
 
 If you add with the same key more than once, Hoover automatically rolls it up into an array so you don't lose anything.
+
+
+## Todo
+
+* Write tests for Rails components
+* Provide config option to set the logglier during initialization
+* Provide config option to choose which log subscribers to enable
 
 
 ## Contributing to Hoover
@@ -58,7 +65,8 @@ If you add with the same key more than once, Hoover automatically rolls it up in
 * Start a feature/bugfix branch
 * Commit and push until you are happy with your contribution
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise
+  necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 
 ## Copyright
