@@ -54,9 +54,10 @@ If you add with the same key more than once, Hoover automatically rolls it up in
 
 ## Todo
 
-* Write tests for Rails components
-* Provide config option to set the logglier during initialization
-* Provide config option to choose which log subscribers to enable
+* Provide config option to set the logglier during Rails initialization, thus guaranteeing its presence beyond what is
+  possible with simple ActionController filters.
+* Write specs for Rails components.
+* Provide config option to choose which log subscribers to enable.
 
 
 ## Contributing to Hoover

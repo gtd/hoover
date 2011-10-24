@@ -1,3 +1,7 @@
+## Version 0.0.5 - Oct 24, 2011
+
+* Sanitize hash objects coming in instead of relying on implicit to_json which sometimes crashes.
+
 ## Version 0.0.4 - Oct 22, 2011
 
 * Fix some crashes in the middleware
