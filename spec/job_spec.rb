@@ -68,4 +68,15 @@ describe Hoover::Job do
       @job.post
     end
   end
+
+  describe "unexpected object type" do
+    it "converts to string" do
+      @object = Object.new
+      def @object.to_s
+        "My String Representation"
+      end
+      @job.add(:foo => @object)
+      @job.hash.must_equal({:foo => ["My String Representation"]})
+    end
+  end
 end
