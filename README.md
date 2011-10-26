@@ -17,6 +17,12 @@ If you are using Rails 3, then there are prewritten log subscribers that pass mo
 the normal rails log in a simplified and convenient JSON format.
 
 
+## Requirements
+
+Hoover is designed to work w/ Ruby 1.8.7 or 1.9.2+ and any Rack framework.  That said, it has been developed under Rails
+3.0.9 with 1.8.7.  Other Rack frameworks are probably pretty rough at this point (but please send suggestions!).
+
+
 ## Installation
 
 You're using bundler right?
@@ -58,6 +64,13 @@ If you add with the same key more than once, Hoover automatically rolls it up in
 * Provide config option to set the logglier during Rails initialization, thus guaranteeing its presence beyond what is
   possible with simple ActionController filters.
 * Provide config option to choose which log subscribers to enable.
+
+
+## Known Issues
+
+* As of this writing, Loggly's JSON API does not handle hashes nested inside arrays properly.  Each hash ends up looking
+  like [object Object] in the search console.  This totally breaks Hoover's automatic stacking of duplicate adds, but
+  hopefully they'll have it fixed soon.
 
 
 ## Contributing to Hoover
