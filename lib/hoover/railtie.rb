@@ -1,10 +1,4 @@
 module Hoover
-  autoload :ActionControllerLogSubscriber, 'hoover/log_subscribers/action_controller_log_subscriber'
-  autoload :ActionMailerLogSubscriber, 'hoover/log_subscribers/action_mailer_log_subscriber'
-  autoload :ActionViewLogSubscriber, 'hoover/log_subscribers/action_view_log_subscriber'
-  autoload :ActiveResourceLogSubscriber, 'hoover/log_subscribers/active_resource_log_subscriber'
-  autoload :ActiveRecordLogSubscriber, 'hoover/log_subscribers/active_record_log_subscriber'
-
   class Railtie < Rails::Railtie
     def self.all_rails_log_subscribers
       [:action_controller, :action_mailer, :action_view, :active_resource, :active_record]

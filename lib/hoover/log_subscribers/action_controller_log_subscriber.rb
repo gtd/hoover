@@ -1,3 +1,6 @@
+require 'action_controller'
+require 'active_support/core_ext/hash/except'
+
 module Hoover
   class ActionControllerLogSubscriber < ActiveSupport::LogSubscriber
     INTERNAL_PARAMS = %w(controller action format _method only_path)
@@ -16,26 +19,32 @@ module Hoover
       payload   = event.payload
       additions = ActionController::Base.log_process_action(payload)
 
+      runtimes  = additions.inject({}) do |hash, string|
+        name, time = string.split(':')
+        hash[name] = time.to_f
+        hash
+      end
+
       status = payload[:status]
       if status.nil? && payload[:exception].present?
         status = Rack::Utils.status_code(ActionDispatch::ShowExceptions.rescue_responses[payload[:exception].first]) rescue nil
       end
 
-      Hoover.add(:status => "#{status} #{Rack::Utils::HTTP_STATUS_CODES[status]}",
-                 :duration => "%.0f" % event.duration)
-      Hoover.add :additions => additions.join(" | ") unless additions.blank?
+      Hoover.add(:status => status,
+                 :duration => event.duration)
+      Hoover.add :runtimes => runtimes unless runtimes.blank?
     end
 
     def send_file(event)
-      Hoover.add(:sent_file, "%s (%.1fms)" % [event.payload[:path], event.duration])
+      Hoover.add(:sent_file => { :path => event.payload[:path], :runtime => event.duration })
     end
 
     def redirect_to(event)
-      Hoover.add(:redirected_to, event.payload[:location])
+      Hoover.add(:redirected_to => event.payload[:location])
     end
 
     def send_data(event)
-      Hoover.add(:sent_data, "%s (%.1fms)" % [event.payload[:filename], event.duration])
+      Hoover.add(:sent_data => { :filename => event.payload[:filename], :runtime => event.duration })
     end
 
     %w(write_fragment read_fragment exist_fragment?
@@ -43,8 +52,7 @@ module Hoover
       class_eval <<-METHOD, __FILE__, __LINE__ + 1
         def #{method}(event)
           key_or_path = event.payload[:key] || event.payload[:path]
-          human_name  = #{method.to_s.humanize.inspect}
-          Hoover.add(method.to_sym, "\#{key_or_path} (%.1fms)" % event.duration)
+          Hoover.add(#{method.to_sym.inspect} => { :key => key_or_path, :runtime => event.duration })
         end
       METHOD
     end

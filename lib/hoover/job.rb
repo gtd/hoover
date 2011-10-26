@@ -42,7 +42,7 @@ module Hoover
 
     def sanitize_object(value)
       case value
-      when String, Fixnum, Date, Time, NilClass
+      when String, Fixnum, Float, Date, Time, NilClass
         value
       else
         value.to_s
