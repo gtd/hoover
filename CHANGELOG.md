@@ -1,3 +1,10 @@
+## Version 0.0.6 - Oct 26, 2011
+
+* Remove ActionView log subscriber contents (not useful to me, and triggers the loggly hash-in-array bug)
+* Polish and specs for ActionController, ActiveResource, and ActionMailer log subscribers (derived from live test
+  against Rails 3.0.9
+* Send an INFO message to main Rails logger so you can see what was sent to Loggly
+
 ## Version 0.0.5 - Oct 24, 2011
 
 * Sanitize hash objects coming in instead of relying on implicit to_json which sometimes crashes.
