@@ -22,6 +22,7 @@ module Hoover
         Hoover.add :method => request.request_method,
                    :path => request.filtered_path
       else
+        # TODO: Figure out sane logging defaults for the average rack app and make this configurable
         Hoover.add env
       end
 
