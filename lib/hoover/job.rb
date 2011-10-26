@@ -25,6 +25,7 @@ module Hoover
     def post
       raise "cannot post until logglier is set" unless ready_to_post?
       @hash.each{ |k,v| @hash[k] = @hash[k].first if v.size == 1 }
+      Rails.logger.info "  Hoover sending keys #{@hash.keys.inspect} to Loggly" if defined?(Rails) && Rails.logger
       @logglier.info(@hash)
     end
 
