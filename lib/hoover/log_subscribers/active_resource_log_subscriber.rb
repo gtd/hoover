@@ -4,7 +4,7 @@ module Hoover
       result = event.payload[:result]
       request = { :method => event.payload[:method].to_s.upcase,
                   :request_uri => event.payload[:request_uri],
-                  :result_code => result.code,
+                  :result_code => result.code.to_i,
                   :result_message => result.message,
                   :result_length => result.body.to_s.length,
                   :duration => event.duration }

@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.require_paths = [%q{lib}]
 
-  s.add_dependency "logglier", ["~> 0.2.6"]
+  s.add_dependency "logglier", ["~> 0.2.5"]
 
   s.add_development_dependency "bundler"
   s.add_development_dependency "rake"
