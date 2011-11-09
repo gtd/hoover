@@ -74,6 +74,9 @@ If you add with the same key more than once, Hoover automatically rolls it up in
 
 ## Known Issues
 
+* If you are using threaded delivery with Unicorn app preloading, deliveries may never be made because the delivery
+  thread will be lost when Unicorn forks the workers.  I have submitted a pull request to get this fixed, hopefully in
+  the next release after 0.2.7.  In the meantime you can use my fork.
 * As of this writing, Loggly's JSON API does not handle hashes nested inside arrays properly.  Each hash ends up looking
   like [object Object] in the search console.  This totally breaks Hoover's automatic stacking of duplicate adds, but
   hopefully they'll have it fixed soon.
