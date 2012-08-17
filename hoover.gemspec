@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email = ['gabe@websaviour.com']
   s.summary = %q{Rack-based support for collecting a single hash per request to be sent to Loggly}
   s.description = %q{Sets up a hash at the beginning of each request and flushes it to Loggly at the end of the request.  Also comes with standard Rails 3 log subscribers.}
-  s.homepage = %q{http://github.com/dasil003/hoover}
+  s.homepage = %q{http://github.com/gtd/hoover}
   s.licenses = [%q{MIT}]
 
   s.files         = `git ls-files`.split("\n")
